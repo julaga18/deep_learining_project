@@ -19,7 +19,7 @@ HF_TARGETS_FILENAME = "target_columns.json"
 
 BERT_NAME = "bert-base-uncased"
 BERT_MAX_LEN = 400
-FAST_MAX_LEN = 192
+FAST_MAX_LEN = 400
 PREDICTION_THRESHOLD = 0.49
 
 EXAMPLE_LYRICS = {
@@ -264,14 +264,9 @@ def main() -> None:
     if "lyrics_input" not in st.session_state:
         st.session_state.lyrics_input = ""
 
-    with st.sidebar:
-        st.header("⚙️ Prediction Settings")
-        max_len = FAST_MAX_LEN
-        st.caption(f"Max sequence length: {max_len} tokens (fixed)")
-        st.caption("Model: Text-only BERT")
-        st.caption(f"Source: HF Hub ({HF_REPO_ID})")
+    max_len = FAST_MAX_LEN
 
-        st.divider()
+    with st.sidebar:
         st.subheader("📝 Quick Examples")
         st.caption("Click any button to auto-fill realistic sample lyrics!")
         for idx, (label, text) in enumerate(EXAMPLE_LYRICS.items(), start=1):
